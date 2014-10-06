@@ -160,7 +160,7 @@ dev.off()
 
 
 # boxcox on outlier removed
-source("hw2.R")
+source("Search_for_Lambda.R")
 lambda_nooutliers <- bisectionBC(dataNoOutliers)
 dataNoOutliers_transform <- cbind(dataNoOutliers, dataNoOutliers[2]^lambda_nooutliers)
 names(dataNoOutliers_transform)[5] <- 'transform_dataNooutliers'
