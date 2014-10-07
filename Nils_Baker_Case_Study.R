@@ -61,8 +61,8 @@ shapiro.test(MLR$residuals)
 
 
 # box-cox transformation
-source("Search_for_Lambda.R")
-lambda <- bisectionBC(data)
+bc <- boxcox(MLR)
+lambda <- bc$x[which.max(bc$y)]
 data_transform <- cbind(data, data[2]^lambda)
 names(data_transform)[5] <- 'transform_data'
 
@@ -160,8 +160,8 @@ dev.off()
 
 
 # boxcox on outlier removed
-source("Search_for_Lambda.R")
-lambda_nooutliers <- bisectionBC(dataNoOutliers)
+bc_nooutliers <- boxcox(MLR_nooutliers)
+lambda_nooutliers <- bc_nooutliers$x[which.max(bc_nooutliers$y)]
 dataNoOutliers_transform <- cbind(dataNoOutliers, dataNoOutliers[2]^lambda_nooutliers)
 names(dataNoOutliers_transform)[5] <- 'transform_dataNooutliers'
 
